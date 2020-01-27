@@ -11,6 +11,12 @@ const Button = ({onClick, text}) => (
     <button onClick={onClick}>{text}</button>
 )
 
+const StatisticLine = ({text, value}) => (
+    <>
+        <p>{text}: {value}</p>
+    </>
+)
+
 const Statistics = ({good, neutral, bad}) => {
     const all = good + neutral + bad
     
@@ -23,16 +29,16 @@ const Statistics = ({good, neutral, bad}) => {
     }
 
     const average = (good - bad) / all
-    const positive = good / all * 100
+    const positive = ''.concat(good / all * 100).concat(' %')
 
     return (
         <>
-            <p>Good: {good}</p>
-            <p>Neutral: {neutral}</p>
-            <p>Bad: {bad}</p>
-            <p>All: {all}</p>
-            <p>Average: {average}</p>
-            <p>Positive: {positive} %</p>
+            <StatisticLine text='Good' value={good} />
+            <StatisticLine text='Neutral' value={neutral} />
+            <StatisticLine text='Bad' value={bad} />
+            <StatisticLine text='All' value={all} />
+            <StatisticLine text='Average' value={average} />
+            <StatisticLine text='Positive' value={positive} />
         </>
     )   
 }
