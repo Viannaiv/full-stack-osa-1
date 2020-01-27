@@ -11,13 +11,26 @@ const Button = ({onClick, text}) => (
     <button onClick={onClick}>{text}</button>
 )
 
-const Statistics = ({good, neutral, bad}) => (
-    <>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-    </>
-)
+const Statistics = ({good, neutral, bad}) => {
+    const all = good + neutral + bad
+    let average = (good - bad) / all
+    let positive = good / all * 100
+    if (all === 0) {
+        average = 0
+        positive = 0
+    }
+
+    return (
+        <>
+            <p>Good: {good}</p>
+            <p>Neutral: {neutral}</p>
+            <p>Bad: {bad}</p>
+            <p>All: {all}</p>
+            <p>Average: {average}</p>
+            <p>Positive: {positive} %</p>
+        </>
+    )   
+}
 
 const App = () => {
     const [good, setGood] = useState(0)
